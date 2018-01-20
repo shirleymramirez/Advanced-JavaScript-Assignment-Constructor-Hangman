@@ -5,8 +5,8 @@ var Word = function(charWord) {
 
     // will hold all the letters
     this.letChar = [];
-
     this.found = false;
+    this.guessesMade = "";
 
     // get letter function
     this.getLetter = function() {
@@ -26,9 +26,26 @@ var Word = function(charWord) {
 
     // check if letter found
     this.checkLetterFound = function(guessedLetter) {
-
+        var lowerLetter = guessedLetter.toLowerCase();
+        if (this.guessesMade.indexOf(lowerLetter) != 1) {
+            return "Duplicate";
+        }
+        this.guessesMade += lowerLetter;
+        for (var i = 0; i < this.letChar.length; i++) {
+            if (this.letChar[i].charWord.toLowerCase() == lowerLetter) {
+                this.letChar[i].show = true;
+            }
+        }
     }
 
+    // 
+    this.toString = function() {
+        var output = "";
+        for (var i = 0; i < this.letChar.length; i++) {
+            output += this.letChar[i].letterRender();
+        }
+        return output;
+    }
 }
 
 module.exports = Word;

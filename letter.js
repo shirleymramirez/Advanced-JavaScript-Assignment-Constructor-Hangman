@@ -1,9 +1,12 @@
 function Letter(letChar) {
     this.letChar = letChar;
-    // this will check the boolean/property can be shown
+
+    // this will check the boolean/property of the charater/letter input
     this.appear = false;
 
+    //render letter if existing or not
     this.letterRender = function() {
+
         // render a blank 
         if (this.letChar == '') {
             this.appear = true;
@@ -16,4 +19,5 @@ function Letter(letChar) {
         }
     }
 }
+
 module.exports = Letter;
