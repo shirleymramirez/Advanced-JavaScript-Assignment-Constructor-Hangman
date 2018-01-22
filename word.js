@@ -1,51 +1,43 @@
-var Letter = require('./letter.js');
+var Letter = require("./letter.js");
 
-var Word = function(charWord) {
-    this.charWord = charWord;
-
-    // will hold all the letters
-    this.letChar = [];
+// creates a word constructor
+function Word(value) {
+    this.value = value;
+    this.letterChar = [];
     this.found = false;
-    this.guessesMade = "";
 
-    // get letter function
-    this.getLetter = function() {
-        for (var i = 0; i < this.charWord.length; i++) {
-            this.letChar.push(new Letter(this.charWord[i]));
-        }
+    console.log(value);
+    for (var i = 0; i < this.value.length; i++) {
+        this.letterChar.push(new Letter(this.value[i]));
     }
 
-    // check word function
-    this.foundWord = function() {
-        this.found = this.letChar.every(function(currentLetter) {
-            return currentLetter.appear;
+    // this function will show all the correct letter found
+    this.findword = function() {
+        this.found = this.letterChar.every(function(curLet) {
+            return curLet.show;
         })
-        this.found = true;
-        return true;
+        return this.found;
     }
 
-    // check if letter found
+    // this function will check the letter found if 
+    // it is in the randomIndex of the chosen word
     this.checkLetterFound = function(guessedLetter) {
-        var lowerLetter = guessedLetter.toLowerCase();
-        if (this.guessesMade.indexOf(lowerLetter) != 1) {
-            return "Duplicate";
-        }
-        this.guessesMade += lowerLetter;
-        for (var i = 0; i < this.letChar.length; i++) {
-            if (this.letChar[i].charWord.toLowerCase() == lowerLetter) {
-                this.letChar[i].show = true;
-            }
+
+        for (var i = 0; i < this.letterChar.length; i++) {
+            // if (this.letterChar[i].value.toLowerCase() == lowerLetter) {
+            this.letterChar[i].checkLetterFound(guessedLetter);
         }
     }
 
-    // 
-    this.toString = function() {
-        var output = "";
-        for (var i = 0; i < this.letChar.length; i++) {
-            output += this.letChar[i].letterRender();
+    // this function will render the word 
+    this.wordRender = function() {
+        var output = '';
+        for (var i = 0; i < this.letterChar.length; i++) {
+            output += this.letterChar[i].letterRender() + ' ';
         }
+        console.log(output);
         return output;
     }
-}
+};
 
 module.exports = Word;

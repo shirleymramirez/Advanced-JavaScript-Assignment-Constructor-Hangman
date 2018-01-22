@@ -1,22 +1,22 @@
 {
-  "name": "constructor-hangman",
-  "version": "1.0.0",
-  "description": "app using npm packages or prompt ",
-  "main": "main.js",
-  "scripts": {
-    "test": "node main.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/shirleymramirez/Advanced-Javascript-Constructor-Hangman.git"
-  },
-  "author": "Shirley Ramirez",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/shirleymramirez/Advanced-Javascript-Constructor-Hangman/issues"
-  },
-  "homepage": "https://github.com/shirleymramirez/Advanced-Javascript-Constructor-Hangman#readme",
-  "dependencies": {
-    "prompt": "^1.0.0"
-  }
+    "name": "constructor-hangman",
+    "version": "1.0.0",
+    "description": "app using npm inquirer packages or prompt ",
+    "main": "main.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/shirleymramirez/Advanced-Javascript-Constructor-Hangman.git"
+    },
+    "author": "Shirley Ramirez",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/shirleymramirez/Advanced-Javascript-Constructor-Hangman/issues"
+    },
+    "homepage": "https://github.com/shirleymramirez/Advanced-Javascript-Constructor-Hangman#readme",
+    "dependencies": {
+        "inquirer": "^5.0.1"
+    }
 }
