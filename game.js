@@ -3,7 +3,7 @@ var inquirer = require("inquirer");
 
 function HangmanGame() {
 
-    this.maxGuesses = 10;
+    this.maxGuesses = 15;
     this.guessesMade = " ";
 
     // Array of Word Options
@@ -14,9 +14,19 @@ function HangmanGame() {
     }
     this.word = new Word(this.getRandomWord());
 
+    this.welcomeGreeting = function() {
+        console.log();
+        console.log("Welcome to HangMan Game in Node.js by Shirley Ramirez");
+        console.log("You have " + this.maxGuesses + " number of guesses");
+        console.log("Our category are electronic gadgets");
+        console.log("GoodLuck!");
+        console.log();
+    }
+
+    this.welcomeGreeting();
+
     this.start = function() {
         var self = this;
-        console.log(this.maxGuesses);
 
         //Game over
         if (this.guessesMade.length >= this.maxGuesses) {
@@ -36,13 +46,17 @@ function HangmanGame() {
             self.word.checkLetterFound(input.letter);
             self.word.wordRender();
             if (self.word.findword()) {
+                console.log();
                 console.log("You got it ");
                 console.log(self.word.wordRender() + " is the answer !");
-                console.log("-------------------------\n");
+                console.log("- - - - - - - - - - - - - - - - - - - - - - - -\n");
+                console.log();
                 self.word = new Word(self.getRandomWord());
+                self.maxGuesses = 10;
+
+                self.welcomeGreeting();
             } else {
                 self.maxGuesses--;
-                console.log("-------------------------\n");
                 console.log("You have " + (self.maxGuesses - self.guessesMade.length) + " guesses left.");
             }
             self.start();

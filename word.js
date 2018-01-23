@@ -6,7 +6,7 @@ function Word(value) {
     this.letterChar = [];
     this.found = false;
 
-    console.log(value);
+    // console.log(value);
     for (var i = 0; i < this.value.length; i++) {
         this.letterChar.push(new Letter(this.value[i]));
     }
@@ -23,10 +23,15 @@ function Word(value) {
     // it is in the randomIndex of the chosen word
     this.checkLetterFound = function(guessedLetter) {
 
+        var lowerLetter = guessedLetter.toLowerCase();
+        var result;
         for (var i = 0; i < this.letterChar.length; i++) {
-            // if (this.letterChar[i].value.toLowerCase() == lowerLetter) {
-            this.letterChar[i].checkLetterFound(guessedLetter);
+            var found = this.letterChar[i].checkLetterFound(lowerLetter)
+            if (!result) {
+                result = found;
+            }
         }
+        console.log(result ? result : 'INCORRECT');
     }
 
     // this function will render the word 
