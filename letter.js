@@ -19,11 +19,11 @@ function Letter(value) {
         if (!this.show) {
             this.show = isEqual;
             if (isEqual) {
-                result = 'CORRECT';
+                result = "CORRECT";
             }
         } else {
             if (isEqual) {
-                result = 'DUPLICATE';
+                result = "DUPLICATE";
             }
         }
         return result;

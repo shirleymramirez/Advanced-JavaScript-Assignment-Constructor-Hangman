@@ -25,13 +25,14 @@ function Word(value) {
 
         var lowerLetter = guessedLetter.toLowerCase();
         var result;
+
         for (var i = 0; i < this.letterChar.length; i++) {
             var found = this.letterChar[i].checkLetterFound(lowerLetter)
             if (!result) {
                 result = found;
             }
         }
-        console.log(result ? result : 'INCORRECT');
+        return result ? result : 'INCORRECT';
     }
 
     // this function will render the word 
