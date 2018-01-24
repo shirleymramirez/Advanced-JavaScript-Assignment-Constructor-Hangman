@@ -30,7 +30,7 @@ function HangmanGame() {
         this.guessesMade = " ";
 
         // Array of Word Options "Theme Electronic Gadgets"
-        var wordLists = ["laptop", "cellphone", "computer", "tablet", "notebook", "tablet", "xbox console", "camera", "nintendo", "drone"];
+        var wordLists = ["laptop", "cellphone", "computer", "tablet", "notebook", "keyboard", "xbox console", "camera", "nintendo", "drone"];
         var randomIndex = Math.floor(Math.random() * wordLists.length);
         var randomWord = wordLists[randomIndex];
 
@@ -67,13 +67,13 @@ function HangmanGame() {
             // this line will console log the word "CORRECT", "INCORRECT"
             // and "DUPLICATE" 
             console.log();
-            if (result === "CORRECT") {
+            if (result === "CORRECT!!!") {
                 log(chalk.green(result));
-            } else if (result === "INCORRECT") {
+            } else if (result === "INCORRECT!") {
                 log(error(result));
                 // number of guesses will decrease by 1
                 self.maxGuesses--;
-            } else if (result === "DUPLICATE") {
+            } else if (result === "DUPLICATE!!") {
                 console.log(result);
             }
             // rendered word and console log it then ask player if 

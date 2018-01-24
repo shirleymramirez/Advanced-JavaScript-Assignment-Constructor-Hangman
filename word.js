@@ -26,17 +26,25 @@ function Word(value) {
         var result;
 
         for (var i = 0; i < this.letterChar.length; i++) {
+            // check the correct letter in each indeces of the 
+            // temporary letterChar array
             var found = this.letterChar[i].checkLetterFound(lowerLetter)
+
+            // checks if the letter/result is found or not
             if (!result) {
                 result = found;
             }
         }
-        return result ? result : 'INCORRECT';
+        // checks if result is not found in the indeces of our chosen word
+        // will return 'INCORRECT'
+        return result ? result : 'INCORRECT!';
     }
 
     // this function will render the word 
+    // and console log the correct word  
     this.wordRender = function() {
         var output = '';
+
         for (var i = 0; i < this.letterChar.length; i++) {
             output += this.letterChar[i].letterRender() + ' ';
         }

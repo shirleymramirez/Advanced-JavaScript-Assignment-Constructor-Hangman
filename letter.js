@@ -16,14 +16,15 @@ function Letter(value) {
     this.checkLetterFound = function(guessedLetter) {
         var isEqual = guessedLetter === this.value;
         var result;
-        if (!this.show) {
-            this.show = isEqual;
-            if (isEqual) {
-                result = "CORRECT";
-            }
-        } else {
-            if (isEqual) {
-                result = "DUPLICATE";
+        // check if the letter is found in chosen word
+        if (isEqual) {
+            if (this.show) {
+                // 2nd time the letter is inputted 
+                result = 'DUPLICATE!!';
+            } else {
+                // first time the letter is inputted
+                this.show = true;
+                result = "CORRECT!!!";
             }
         }
         return result;
