@@ -17,6 +17,7 @@
     },
     "homepage": "https://github.com/shirleymramirez/Advanced-Javascript-Constructor-Hangman#readme",
     "dependencies": {
+        "chalk": "^2.3.0",
         "inquirer": "^5.0.1"
     }
 }

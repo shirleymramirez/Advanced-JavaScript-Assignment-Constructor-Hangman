@@ -6,7 +6,6 @@ function Word(value) {
     this.letterChar = [];
     this.found = false;
 
-    // console.log(value);
     for (var i = 0; i < this.value.length; i++) {
         this.letterChar.push(new Letter(this.value[i]));
     }
@@ -41,9 +40,11 @@ function Word(value) {
         for (var i = 0; i < this.letterChar.length; i++) {
             output += this.letterChar[i].letterRender() + ' ';
         }
+        console.log();
         console.log(output);
         return output;
     }
 };
 
+// exports Word function
 module.exports = Word;

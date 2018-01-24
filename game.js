@@ -1,26 +1,42 @@
-var Word = require("./word.js");
+// npm packages needed to do a prompt for user input
 var inquirer = require("inquirer");
+
+// packages used for color changes in the console log output
+const chalk = require("chalk");
+
+var Word = require("./word.js");
+
+// assigned constant for colors to be used for console log
+const error = chalk.bold.red;
+const warning = chalk.keyword("orange");
+const log = console.log;
+
 
 function HangmanGame() {
 
+    this.maxGuesses = 15;
+
+    // just welcome messages at the start of the game
     console.log();
-    console.log("Welcome to HangMan Game in Node.js by Shirley Ramirez");
+    log(chalk.yellow.underline.bold("Welcome to HangMan Game in Node.js " + chalk.green.underline.bold("by Shirley Ramirez")));
     console.log("You have " + this.maxGuesses + " number of guesses");
     console.log("Our category are electronic gadgets");
-    console.log("GoodLuck!");
+    log(chalk.green("GoodLuck!"));
     console.log();
 
+    // game initialization with the randomnized words for the choices
     this.init = function() {
         this.maxGuesses = 15;
         this.guessesMade = " ";
 
-        // Array of Word Options
+        // Array of Word Options "Theme Electronic Gadgets"
         var wordLists = ["laptop", "cellphone", "computer", "tablet", "notebook", "tablet", "xbox console", "camera", "nintendo", "drone"];
         var randomIndex = Math.floor(Math.random() * wordLists.length);
         var randomWord = wordLists[randomIndex];
 
         this.word = new Word(randomWord);
     }
+
     this.init();
 
     this.start = function() {
@@ -28,42 +44,57 @@ function HangmanGame() {
 
         //Game over
         if (this.maxGuesses <= 0) {
-            console.log("You run out of guesses!.");
+            // console.log(error("You run out of guesses!."));
             self.playAgain();
             return;
         }
+
+        // ask the player for letter input
         inquirer.prompt([{
             name: "letter",
             message: "Type a letter:",
             // validation check for input keys
             validate: function(str) {
-                var regEx = new RegExp("^[a-z A-Zs]{1,1}$");
-                return regEx.test(str);
-            }
+                    var regEx = new RegExp("^[a-z A-Zs]{1,1}$");
+                    return regEx.test(str);
+                }
+                //Game control
         }]).then(function(input) {
-            //Game control
 
             // checks if letter guessed by the user is correct or not
-            // then number of guesses will decrease by 1
             var result = self.word.checkLetterFound(input.letter);
-            console.log(result);
+
+            // this line will console log the word "CORRECT", "INCORRECT"
+            // and "DUPLICATE" 
+            console.log();
+            log(chalk.green(result));
+
+            // then number of guesses will decrease by 1
             if (result === "INCORRECT") {
                 self.maxGuesses--;
             }
+            // rendered word and console log it then ask player if 
+            // they want to play again
             self.word.wordRender();
             if (self.word.findword()) {
                 console.log();
-                console.log("You got it ");
-                console.log(self.word.wordRender() + " is the answer !");
+                log(chalk.blue("You got it "));
+                log(chalk.blue(self.word.wordRender() + " is the answer !"));
                 console.log("- - - - - - - - - - - - - - - - - - - - - - - -\n");
                 self.playAgain();
                 return;
             } else {
-                console.log("You have " + self.maxGuesses + " guesses left.");
+                // this line here warns the player of their remaining guesses left
+                console.log();
+                console.log(warning("You have " + self.maxGuesses + " guesses left."));
+                console.log();
             }
+            // function recursion
             self.start();
         });
     }
+
+    // ask the player if they want to play again 
     this.playAgain = function() {
         var self = this;
         inquirer.prompt([{
@@ -72,16 +103,20 @@ function HangmanGame() {
             message: "Would you like to play again?",
             default: true,
         }]).then(function(answer) {
+            // this part will check if play again or stop already
             if (answer.playAgain) {
                 console.log();
                 self.init();
                 self.start();
             } else {
-                console.log("Thanks for playing!");
+                console.log();
+                log(chalk.yellow("Thanks for playing!"));
+                console.log();
             }
 
         })
     }
 }
 
+// exports HangmanGame function
 module.exports = HangmanGame;

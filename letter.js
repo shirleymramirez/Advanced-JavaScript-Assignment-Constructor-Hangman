@@ -29,4 +29,6 @@ function Letter(value) {
         return result;
     }
 }
+
+// exports Letter function
 module.exports = Letter;
