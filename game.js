@@ -18,7 +18,7 @@ function HangmanGame() {
 
     // just welcome messages at the start of the game
     console.log();
-    log(chalk.yellow.underline.bold("Welcome to HangMan Game in Node.js " + chalk.green.underline.bold("by Shirley Ramirez")));
+    log(chalk.yellow.underline.bold("Welcome to HangMan Game using Constructors " + chalk.green.underline.bold("by Shirley Ramirez")));
     console.log("You have " + this.maxGuesses + " number of guesses");
     console.log("Our category are electronic gadgets");
     log(chalk.green("GoodLuck!"));
@@ -67,11 +67,14 @@ function HangmanGame() {
             // this line will console log the word "CORRECT", "INCORRECT"
             // and "DUPLICATE" 
             console.log();
-            log(chalk.green(result));
-
-            // then number of guesses will decrease by 1
-            if (result === "INCORRECT") {
+            if (result === "CORRECT") {
+                log(chalk.green(result));
+            } else if (result === "INCORRECT") {
+                log(error(result));
+                // number of guesses will decrease by 1
                 self.maxGuesses--;
+            } else if (result === "DUPLICATE") {
+                console.log(result);
             }
             // rendered word and console log it then ask player if 
             // they want to play again
